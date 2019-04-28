@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "632337558074",
+    "firebase_url": "https://proflow-2bc62.firebaseio.com",
+    "project_id": "proflow-2bc62",
+    "storage_bucket": "proflow-2bc62.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632337558074:android:7cdc37dafb9449c5",
+        "android_client_info": {
+          "package_name": "com.example.proflow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "632337558074-npm7diildaggk37u6i7odpolvfc6chcj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.proflow",
+            "certificate_hash": "17af5b43d7c3a32465fbd8b04c3c52909dc5419a"
+          }
+        },
+        {
+          "client_id": "632337558074-k75p9f6ur20156jkclrh8op20bs80a1g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAanNWwvolSizqR7Umxu0JVydA70NJf-9I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "632337558074-k75p9f6ur20156jkclrh8op20bs80a1g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
