@@ -1,9 +1,12 @@
-package com.example.proflow
+package com.example.proflow.registerlogin
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
+import com.example.proflow.R
+import com.example.proflow.messages.LatestMessagesActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -37,6 +40,8 @@ class LoginActivity: AppCompatActivity() {
                 if (!it.isSuccessful) return@addOnCompleteListener
 
                 //else if successful
+                val intent = Intent(this, LatestMessagesActivity::class.java)
+                startActivity(intent)
                 Log.d("Login", "Successfully login. Your uid is: ${it.result!!.user.uid}")
             }
             .addOnFailureListener {

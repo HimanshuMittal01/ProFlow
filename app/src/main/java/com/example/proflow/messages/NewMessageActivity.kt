@@ -1,11 +1,11 @@
-package com.example.proflow
+package com.example.proflow.messages
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.Log
-import android.view.View
+import com.example.proflow.R
+import com.example.proflow.models.User
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -16,6 +16,7 @@ import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_new_message.*
 import kotlinx.android.synthetic.main.user_row_new_message.view.*
+import java.security.Key
 
 class NewMessageActivity : AppCompatActivity() {
 
@@ -26,6 +27,10 @@ class NewMessageActivity : AppCompatActivity() {
         supportActionBar?.title = "Select User"
 
         fetchUsers()
+    }
+
+    companion object {
+        val USER_KEY = "USER_KEY"
     }
 
     private fun fetchUsers() {
@@ -40,6 +45,16 @@ class NewMessageActivity : AppCompatActivity() {
                     if (user!=null) {
                         adapter.add(UserItem(user))
                     }
+                }
+
+                adapter.setOnItemClickListener { item, view ->
+                    val userItem = item as UserItem
+
+                    val intent = Intent(view.context, ChatLogActivity::class.java)
+                    intent.putExtra(USER_KEY, userItem.user)
+                    startActivity(intent)
+
+                    finish()
                 }
 
                 recyclerview_newmessage.adapter = adapter
@@ -62,10 +77,3 @@ class UserItem(val user: User): Item<ViewHolder>() {
         return R.layout.user_row_new_message
     }
 }
-//this is super tedious
-
-//class CustomAdapter: RecyclerView.Adapter<ViewHolder> {
-//    override fun onBindViewHolder(p0: RecyclerView.ViewHolder, p1: Int) {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//    }
-//}

@@ -1,14 +1,16 @@
-package com.example.proflow
+package com.example.proflow.registerlogin
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
+import com.example.proflow.messages.LatestMessagesActivity
+import com.example.proflow.R
+import com.example.proflow.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -117,7 +119,8 @@ class RegisterActivity : AppCompatActivity() {
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
 
-        val user = User(uid, username_edittext_register.text.toString(), profileImageUrl)
+        val user =
+            User(uid, username_edittext_register.text.toString(), profileImageUrl)
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d("RegisterActivity", "Finally we saved the user to Firebase Database")
@@ -130,8 +133,4 @@ class RegisterActivity : AppCompatActivity() {
                 Log.d("RegisterActivity", "Not saved in database because ${it.message}")
             }
     }
-}
-
-class User(val uid: String, val username: String, val profileImageUrl: String) {
-    constructor() : this("", "", "")
 }
