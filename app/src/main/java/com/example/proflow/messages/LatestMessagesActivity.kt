@@ -3,11 +3,18 @@ package com.example.proflow.messages
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.internal.BottomNavigationMenu
+import android.support.design.widget.BottomNavigationView
+import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatDialogFragment
 import android.support.v7.widget.DividerItemDecoration
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.example.proflow.R
+import com.example.proflow.fragments.AnalyzeFragment
+import com.example.proflow.fragments.ChatFragment
+import com.example.proflow.fragments.ProjectFragment
 import com.example.proflow.models.ChatMessage
 import com.example.proflow.models.User
 import com.example.proflow.registerlogin.RegisterActivity
@@ -29,9 +36,33 @@ class LatestMessagesActivity : AppCompatActivity() {
         val TAG = "LatestMessages"
     }
 
+    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->  
+        when(item.itemId) {
+            R.id.chats -> {
+                replaceFragment(ChatFragment())
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.analyze -> {
+                replaceFragment(AnalyzeFragment())
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.projects -> {
+                replaceFragment(ProjectFragment())
+                return@OnNavigationItemSelectedListener true
+            }
+        }
+        false
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_latest_messages)
+
+        //Adding the navigation menu
+        bottom_navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        //Default fragment
+        //For now it is chat
+        replaceFragment(ChatFragment())
 
         recyclerview_latest_manager.adapter = adapter
         recyclerview_latest_manager.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
@@ -48,6 +79,13 @@ class LatestMessagesActivity : AppCompatActivity() {
         fetchCurrentUser()
 
         verifyUserIsLoggedIn()
+    }
+
+    //Managing fragments
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragment_container, fragment)
+        fragmentTransaction.commit()
     }
 
     val adapter = GroupAdapter<ViewHolder>()

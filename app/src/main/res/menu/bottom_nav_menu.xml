@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/chats"
+        android:title="Chats"
+        android:icon="@drawable/baseline_chat_black_24"
+    />
+    <item
+            android:id="@+id/analyze"
+            android:title="Analyze"
+            android:icon="@drawable/baseline_accessibility_black_24"
+    />
+    <item
+            android:id="@+id/projects"
+            android:title="Projects"
+            android:icon="@drawable/baseline_group_work_black_24"
+    />
+</menu>
